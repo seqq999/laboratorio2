@@ -1,4 +1,4 @@
-package main.java.cr.ac.ucr.paraiso.ie.C36342.laboratorio2.domain;
+package cr.ac.ucr.paraiso.ie.C36342.laboratorio2.domain;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
