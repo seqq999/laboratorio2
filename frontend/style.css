@@ -1,0 +1,123 @@
+/* Declaración en el ámbito global */ 
+:root {
+  --primary: #0d9488;
+  --primary-hover: #0f766e;
+  --bg-page: #f1f5f9;
+  --bg-card: #ffffff;
+  --border-color: #cbd5e1;
+  --text: #172033;
+  --text-muted: #64748b;
+  --radius: 8px;
+  --transition: all 0.3s ease;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg-page);
+  color: var(--text);
+  font-family: system-ui, sans-serif;
+}
+
+main {
+  width: min(1100px, 100%);
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+/* Uso de variables */
+.btn {
+  background-color: var(--primary);
+  border-radius: var(--radius);
+  transition: var(--transition);
+}
+
+/* Uso con valor por defecto (fallback) */
+.card {
+  background-color: var(--bg-card, #1e293b);
+}
+
+/* Sintaxis con anidamiento nativo */
+.formulario-registro {
+  background-color: var(--bg-card);
+  padding: 2rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+
+  form {
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  label {
+    font-weight: 700;
+  }
+
+  /* Anidar inputs */
+  input,
+  select,
+  textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font: inherit;
+    /* Selector del padre (&) para estados */
+    &:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 5px rgba(13, 148, 136, 0.4);
+    }
+    &::placeholder {
+      color: var(--text-muted);
+    }
+  }
+  /* Anidar botones */
+  button {
+    background-color: var(--primary);
+    color: white;
+    border: 0;
+    border-radius: var(--radius);
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    &:hover {
+      background-color: var(--primary-hover);
+    }
+  }
+}
+
+.catalogo-grid {
+  display: grid;
+  /* Columnas auto-ajustables con un ancho mínimo de 280px */
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+/* El elemento que aloja a <tarjeta-libro> actúa como contenedor */
+.tarjeta-wrapper {
+  container-type: inline-size;
+  container-name: tarjeta-cont;
+}
+
+/* Estilo base (por defecto: tarjeta grande/horizontal) */
+.libro-card {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  padding: 1.5rem;
+}
+
+/* Adaptación cuando el contenedor es estrecho (menos de 350px) */
+@container tarjeta-cont (max-width: 350px) {
+  .libro-card {
+    flex-direction: column; /* Apilar verticalmente */
+    padding: 1rem;
+    .descripcion {
+      display: none; /* Ocultar detalles secundarios */
+    }
+  }
+}
